@@ -1,6 +1,9 @@
 *.class
 *.log
 
+# jetbrains idea
+.idea
+
 # sbt specific
 .cache
 .history
