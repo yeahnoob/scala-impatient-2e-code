@@ -1,4 +1,3 @@
-import javax.sound.midi.{Patch, Soundbank}
 
 /**
   * Exercise 05.01
@@ -17,7 +16,6 @@ class Counter {
   }
   def current = value
 }
-
 val myCount = new Counter
 myCount.increment
 println(myCount.current)
@@ -33,13 +31,33 @@ println(myCount.current)
 class BackAccount {
   private var privateBalance = 0
   def balance = privateBalance
-  def deposite(bank: Int) { privateBalance += bank }
-  def withdraw(bank: Int) { deposite( 0 - bank) }
+  def deposit(bank: Int) { privateBalance += bank }
+  def withdraw(bank: Int) { deposit( 0 - bank) }
 }
-
 val myAccount = new BackAccount
-myAccount.deposite(100)
+myAccount.deposit(100)
 myAccount.balance
 myAccount.withdraw(55)
 myAccount.balance
+
+/**
+  * Exercise 05.03
+  * Write a class Time with read-only properties hours and minutes and a method before(other: Time)
+  * : Boolean that checks whether this time comes before the other. A Time object should be constructed
+  * as new Time(hrs, min), where hrs is in military time format (between 0 and 23).
+  */
+class TimeCheck(private val hrs: Int, private val mi: Int) {
+  if(hrs < 0 || hrs > 23) {
+    println("Hours should be in military time format (0 to 23).")
+  }
+  // private var timenow = new java.util.Date
+  def hours = hrs
+  def minutes = mi
+  def before(other: TimeCheck): Boolean = this.hrs < other.hrs || (this.hrs == other.hrs && this.mi < other.mi)
+}
+val t = new TimeCheck(22, 30)
+t.hours
+t.minutes
+t.before(new TimeCheck(22, 30))
+
 
