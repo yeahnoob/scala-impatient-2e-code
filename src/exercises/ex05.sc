@@ -60,4 +60,18 @@ t.hours
 t.minutes
 t.before(new TimeCheck(22, 30))
 
-
+/**
+  * Exercise 05.04
+  * Reimplement the Time class from the preceding exercise so that the internal representation is the number of
+  * minutes since midnight (between 0 and 24 × 60 – 1). Do not change the public interface.
+  * That is, client code should be unaffected by your change.
+  */
+class TimeCheckv2(private val hrs: Int, private val mi: Int) {
+  if(hrs < 0 || hrs > 23) {
+    println("Hours should be in military time format (0 to 23).")
+  }
+  def hours = hrs
+  def minutes = mi
+  private def minutesSinceMidnight = hrs * 60 + mi
+  def before(other: TimeCheckv2): Boolean = this.minutesSinceMidnight < other.minutesSinceMidnight
+}
